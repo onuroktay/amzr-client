@@ -1,0 +1,26 @@
+<md-card style="width:400px; height: 200px;"
+         class="example-card">
+
+  <div style="position: absolute; top: 10px; right: 90px;">
+    <md-icon *ngIf="!editMode && getUserRole() > 1"  (click)="edit()" style="cursor: pointer; ">edit</md-icon>
+    <md-icon *ngIf="editMode && getUserRole() > 1" (click)="save()" style="color: #215d23; cursor: pointer; ">save</md-icon>
+    <md-icon *ngIf="getUserRole() > 1" style="margin-left: 45px; color: #f44336; cursor: pointer; " (click)="openDialog()">delete</md-icon>
+  </div>
+
+  <div class="picture" style="text-align: left">
+    <img style="width: 150px; height: 150px;" src="{{item?.imUrl}}">
+  </div>
+
+  <div class="title" style="margin-top: 20px;">
+    <md-input-container>
+      <textarea mdInput [readonly]="!editMode" placeholder="Title" [(ngModel)]="item.title" rows="2" style="resize: none; overflow-y: hidden; width: 220px;"></textarea>
+    </md-input-container>
+  </div>
+
+  <div class="price">
+    <md-input-container>
+      <input mdInput [readonly]="!editMode" type="number" placeholder="Price" [(ngModel)]="item.price">
+    </md-input-container>
+  </div>
+
+</md-card>

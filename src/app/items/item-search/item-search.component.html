@@ -1,0 +1,38 @@
+<div style="background-color: #fedf88; margin: 10px; border: 1px solid lightgray">
+    <md-grid-list cols="3" rowHeight="20">
+      <md-grid-tile test1 [rowspan]="3">
+        <md-input-container>
+          <input mdInput type="search" placeholder="category" [(ngModel)]="searchCriteria.category">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile test2 [rowspan]="3">
+        <div>
+          <md-input-container>
+            <input mdInput type="number" placeholder="priceFrom" [(ngModel)]="searchCriteria.priceFrom">
+          </md-input-container>
+        </div>
+      </md-grid-tile>
+
+      <md-grid-tile test3 [rowspan]="3">
+        <button md-raised-button (click)="search()">Search</button>
+        <button md-raised-button (click)="reset()">Reset</button>
+      </md-grid-tile>
+
+      <md-grid-tile test3 [rowspan]="3">
+        <md-input-container>
+          <input mdInput type="search" placeholder="title" [(ngModel)]="searchCriteria.title">
+        </md-input-container>
+      </md-grid-tile>
+
+      <md-grid-tile test3 [rowspan]="3">
+        <md-input-container>
+          <input mdInput type="number" placeholder="priceTo" [(ngModel)]="searchCriteria.priceTo">
+        </md-input-container>
+      </md-grid-tile>
+    </md-grid-list>
+</div>
+
+<div style="margin: 5px 0 0 15px; font-size: small;">
+  Number of items found: {{getTotal()}}
+</div>

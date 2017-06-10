@@ -1,0 +1,31 @@
+<md-card class="register-container">
+
+  <md-card-title class="card-title">REGISTER</md-card-title>
+  <md-card-content>
+    <form [formGroup]="form" autocomplete="off" novalidate>
+      <!--Account Field-->
+      <div>
+        <md-input-container style="width: 100%;">
+          <input mdInput type="text" placeholder="Username" formControlName="username">
+          <div class="field-error-message" *ngIf="isErrorVisible('username','required')">field is mandatory</div>
+        </md-input-container>
+      </div>
+
+      <!--Password Field-->
+      <div>
+        <md-input-container style="width: 100%;">
+          <input mdInput type="password" placeholder="Password" formControlName="password">
+          <div class="field-error-message" *ngIf="isErrorVisible('password','required')">field is mandatory</div>
+        </md-input-container>
+      </div>
+
+
+      <md-card-actions>
+        <button md-raised-button color="primary" [disabled]="!form.valid" (click)="register(form)">Register</button>
+        <a md-raised-button color="primary" routerLink="/login" routerLinkActive="active">Go to Login</a>
+      </md-card-actions>
+
+
+    </form>
+  </md-card-content>
+</md-card>

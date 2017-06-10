@@ -1,0 +1,32 @@
+<div style="width: 100%; height:48px;">
+  <md-toolbar color="primary">
+    <span>Amazonreader</span>
+    <span style="flex: 1 1 auto;"></span>
+
+    <button md-button [mdMenuTriggerFor]="appMenu">
+      <span style="margin-right: 20px;">{{getUserName()}}</span>
+      <md-icon>menu</md-icon>
+    </button>
+  </md-toolbar>
+
+  <md-menu #appMenu="mdMenu">
+    <button md-menu-item (click)="logout()"> Logout</button>
+  </md-menu>
+
+  <md-tab-group (focusChange)="changeTab($event)" [selectedIndex]="tab.selectedTab">
+    <md-tab label="Items">
+      <ng-template md-tab-label>
+        Items
+      </ng-template>
+    </md-tab>
+
+    <md-tab label="Users" *ngIf="getUserRole() === 3">
+      <ng-template md-tab-label>
+        Users
+      </ng-template>
+    </md-tab>
+
+  </md-tab-group>
+
+  <router-outlet></router-outlet>
+</div>

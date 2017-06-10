@@ -1,0 +1,18 @@
+.field-error-message {
+  color: red;
+}
+
+.login-container {
+  width: 250px;
+  font-size: 16px !important;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 32px;
+}

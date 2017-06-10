@@ -1,0 +1,14 @@
+<md-list-item>
+  <md-icon md-list-icon style="margin-right: 25px;">perm_identity</md-icon>
+  <h4 style="width: 150px">{{user.username}} </h4>
+
+  <md-select style="margin-right: 40px;" placehoder="Select Role" [(ngModel)]="user.roleValue" [disabled]="!editMode">
+    <md-option *ngFor="let role of roles" [value]=" role.roleValue">
+      {{role.roleName}}
+    </md-option>
+  </md-select>
+
+  <md-icon (click)="editUser(user)" *ngIf="!editMode" color="primary" style="cursor: pointer; ">edit</md-icon>
+  <md-icon (click)="saveUser(user)" *ngIf="editMode" style="color: #215d23; cursor: pointer; ">save</md-icon>
+  <md-icon style="margin-left: 25px; color: #f44336; cursor: pointer; " (click)="openDialog()">delete</md-icon>
+</md-list-item>
