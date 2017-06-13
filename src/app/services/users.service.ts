@@ -80,7 +80,7 @@ export class UsersService {
             if (response.success) {
               this.msgService.setMessage('The user role has been deleted successfully', MessageType.DONE);
             } else {
-              this.msgService.setMessage('The user  has not been deleted!', MessageType.DONE);
+              this.msgService.setMessage('The user  has not been deleted!', MessageType.ERROR);
             }
           }
         }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -9,14 +9,16 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  private subscription: Subscription;
   form: FormGroup;
   success: boolean;
   username: string;
 
   error: any;
+
+  subscription: Subscription;
+
 
   constructor(private router: Router, private fb: FormBuilder, private auth: AuthService) {
 
@@ -34,10 +36,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   login(form) {
     const credentials = {username: form.value.username, password: form.value.password};
 
-    this.auth.login(credentials).subscribe((result => {
+    this.subscription = this.auth.login(credentials).subscribe((result => {
         this.success = result.success;
         this.username = result.data.username;
         if (this.success === true) {

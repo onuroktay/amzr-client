@@ -35,8 +35,10 @@ export class RegisterComponent implements OnInit {
     const login = {username: form.value.username, password: form.value.password};
     this.auth.saveRegister(login)
       .subscribe(
-        data => {
-          this.router.navigate(['/login']);
+        result => {
+          if (result && result.success) {
+            this.router.navigate(['/login']);
+          }
         }
       );
   }

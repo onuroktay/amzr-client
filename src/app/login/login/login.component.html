@@ -1,5 +1,4 @@
 <md-card class="login-container">
-
   <md-card-title class="card-title">LOGIN</md-card-title>
   <md-card-content>
     <form [formGroup]="form" autocomplete="off" novalidate>
@@ -20,8 +19,10 @@
       </div>
 
       <md-card-actions>
-        <a md-raised-button  color="accent" routerLink="/register" routerLinkActive="active">Create a User</a>
-        <button md-raised-button color="primary" [disabled]="!form.valid" (click)="login(form)">Login</button>
+        <button style="width: 100%" md-raised-button color="primary" [disabled]="!form.valid" (click)="login(form)">Login</button>
+        <div>
+          <a  style="float: right; margin-top: 10px" routerLink="/register" routerLinkActive="active">Create a User</a>
+        </div>
       </md-card-actions>
       <div style="color: red">{{error}}</div>
     </form>

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
@@ -22,6 +22,7 @@ import {ItemComponent} from './items/item/item.component';
 import './rxjs-extensions';
 
 import {
+  MaterialModule,
   MdDialogModule, MdGridListModule, MdIconModule, MdListModule, MdMenuModule, MdProgressBarModule,
   MdProgressSpinnerModule, MdSelectModule,
   MdSnackBarModule,

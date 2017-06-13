@@ -6,6 +6,7 @@ import {DeleteConfirmComponent} from '../../confirm/delete-confirm/delete-confir
 import {Subscription} from 'rxjs/Subscription';
 import {UserRole} from '../../model/userRole';
 import {EditService} from '../../services/edit.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'amzr-user',
@@ -14,12 +15,14 @@ import {EditService} from '../../services/edit.service';
 })
 export class UserComponent implements OnInit, OnDestroy {
   @Input() user: User;
+  @Input() users: User[];
 
   roles: UserRole[];
   editMode = false;
   subscription: Subscription;
 
   constructor(private usersService: UsersService,
+              private auth: AuthService,
               public dialog: MdDialog,
               private editService: EditService) {
   }
@@ -43,7 +46,6 @@ export class UserComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       this.editService.decrementEdit();
     }
-
     this.usersService.deleteUser(this.user);
   }
 
@@ -51,10 +53,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.editService.decrementEdit();
     this.editMode = false;
 
-    this.subscription = this.usersService.saveUser(this.user).subscribe(
-      () => {
-      }
-    );
+    this.subscription = this.usersService.saveUser(this.user).subscribe();
   }
 
   openDialog() {
@@ -65,6 +64,10 @@ export class UserComponent implements OnInit, OnDestroy {
         this.deleteUser();
       }
     });
+  }
+
+  isMyself(): boolean {
+    return this.user.username === this.auth.getUserName()
   }
 
 }

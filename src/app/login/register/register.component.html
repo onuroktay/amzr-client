@@ -6,7 +6,7 @@
       <!--Account Field-->
       <div>
         <md-input-container style="width: 100%;">
-          <input mdInput type="text" placeholder="Username" formControlName="username">
+          <input mdInput type="text" pattern="[a-zA-Z0-9]*" placeholder="Username" formControlName="username">
           <div class="field-error-message" *ngIf="isErrorVisible('username','required')">field is mandatory</div>
         </md-input-container>
       </div>
@@ -21,8 +21,15 @@
 
 
       <md-card-actions>
-        <button md-raised-button color="primary" [disabled]="!form.valid" (click)="register(form)">Register</button>
-        <a md-raised-button color="primary" routerLink="/login" routerLinkActive="active">Go to Login</a>
+        <div>
+          <button md-raised-button style="width: 100%" color="primary" [disabled]="!form.valid"
+                  (click)="register(form)">Register
+          </button>
+        </div>
+        <div>
+          <a style="float: right; margin-top: 10px" routerLink="/login" routerLinkActive="active">Back to Login</a>
+
+        </div>
       </md-card-actions>
 
 

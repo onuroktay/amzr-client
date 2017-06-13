@@ -9,6 +9,7 @@ import {MessageType, TabType} from '../../model/constants';
 import {EditService} from '../../services/edit.service';
 import {FileImportService} from '../../services/file-import.service';
 import {MessagesService} from "../../services/messages.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'amzr-items',
@@ -40,7 +41,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
               private navbarService: NavbarService,
               private editService: EditService,
               private msgService: MessagesService,
-              private fileImportService: FileImportService) {
+              private fileImportService: FileImportService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -149,6 +151,10 @@ export class ItemsComponent implements OnInit, OnDestroy {
     } else {
       this.msgService.setMessage('Sorry, only json is supported!', MessageType.ERROR);
     }
+  }
+
+  getUserRole(): number {
+    return this.authService.getUserRole();
   }
 
 }

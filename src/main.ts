@@ -4,6 +4,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+// import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+// import {MaterialAppModule} from './app/app.module';
+// platformBrowserDynamic().bootstrapModule(MaterialAppModule);
+
 if (environment.production) {
   enableProdMode();
 }

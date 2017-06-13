@@ -8,7 +8,9 @@
     </md-option>
   </md-select>
 
-  <md-icon (click)="editUser(user)" *ngIf="!editMode" color="primary" style="cursor: pointer; ">edit</md-icon>
-  <md-icon (click)="saveUser(user)" *ngIf="editMode" style="color: #215d23; cursor: pointer; ">save</md-icon>
-  <md-icon style="margin-left: 25px; color: #f44336; cursor: pointer; " (click)="openDialog()">delete</md-icon>
+  <div *ngIf="!isMyself()">
+    <md-icon (click)="editUser(user)" *ngIf="!editMode" color="primary" style="cursor: pointer; ">edit</md-icon>
+    <md-icon (click)="saveUser(user)" *ngIf="editMode" style="color: #215d23; cursor: pointer; ">save</md-icon>
+    <md-icon style="margin-left: 25px; color: #f44336; cursor: pointer; " (click)="openDialog()">delete</md-icon>
+  </div>
 </md-list-item>

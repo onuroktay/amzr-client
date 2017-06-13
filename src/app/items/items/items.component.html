@@ -14,7 +14,7 @@
     </button>
   </div>
 
-  <div>
+  <div *ngIf="getUserRole() === 3">
     Select file:
     <input type="file" (change)="changeListener($event)">
   </div>

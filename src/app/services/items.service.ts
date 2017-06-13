@@ -159,7 +159,12 @@ export class ItemsService {
   delete(item: Item) {
     const options = new RequestOptions({withCredentials: true}); // Create a request option
 
-    this.http.delete(onurTPIConstant.URLWS + 'item/' + item.id, options).subscribe(
+    this.http.delete(onurTPIConstant.URLWS + 'item/' + item.id, options)
+      .catch((error: any) => {
+        this.msgService.setMessage('The item has not been deleted!', MessageType.ERROR);
+        return Observable.throw(error.json().error || 'Server error');
+      })
+      .subscribe(
       resp => {
         const response = resp.json();
 
@@ -176,7 +181,7 @@ export class ItemsService {
         }
 
         if (response && response.success === false) {
-          this.msgService.setMessage('The item  has not been deleted!', MessageType.DONE);
+          this.msgService.setMessage('The item has not been deleted!', MessageType.ERROR);
         }
       }
     );

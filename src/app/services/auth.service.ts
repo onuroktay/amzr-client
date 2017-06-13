@@ -49,7 +49,18 @@ export class AuthService {
     const options = new RequestOptions({headers: headers});
 
     return this.http.post(onurTPIConstant.URLWS + 'user', body, options) // ...using post request
-      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .map((res: Response) => {
+        const result = res.json();
+
+        if (result && result.success) {
+          this.msgService.setMessage('A new user has been successfully created', MessageType.DONE);
+        } else {
+          this.msgService.setMessage('Sorry, this username already exist!', MessageType.ERROR);
+        }
+
+        return result;
+      }) // ...and calling .json() on the response to return data
+
       .catch((error: any) => {
           this.msgService.setMessage('Sorry, the server doesn\'t respond', MessageType.ERROR);
           return Observable.throw(error.error) || 'Server error';
