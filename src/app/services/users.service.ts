@@ -115,6 +115,7 @@ export class UsersService {
       {roleName: 'Admin', roleValue: UserType.ADMIN},
     ];
   }
+
 }
 
 

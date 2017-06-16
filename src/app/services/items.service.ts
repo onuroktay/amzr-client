@@ -56,6 +56,10 @@ export class ItemsService {
     return this.getCurrentPage() * this.size;
   }
 
+  getItems(): Item[] {
+    return this.items;
+  }
+
   searchItems(): Observable<Item[]> {
     if (this.searchCriteria && this.searchCriteria.priceFrom) {
       this.searchCriteria.priceFrom = this.searchCriteria.priceFrom.toString();

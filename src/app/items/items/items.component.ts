@@ -3,7 +3,6 @@ import {Item} from '../../model/item';
 import {ItemsService} from '../../services/items.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {ItemSearch} from '../../model/itemsearch';
 import {NavbarService} from '../../services/navbar.service';
 import {MessageType, TabType} from '../../model/constants';
 import {EditService} from '../../services/edit.service';
@@ -17,11 +16,11 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit, OnDestroy {
-  items: Item[];
+  items: Item[] = this.itemsService.getItems();
   item: Item;
-  searchCriteria: ItemSearch;
 
   columns = 3;
+  percentComplete = 0;
 
   // color = 'primary';
   // mode = 'Indeterminate';
@@ -47,17 +46,14 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navbarService.setSelectedTab(TabType.ITEMS);
-    this.searchCriteria = this.itemsService.getCriteria();
 
     this.editService.resetEdit();
 
     // Watch for change in params
     this.sub1 = this.route.params.subscribe(
-      (params => {
-          this.sub2 = this.itemsService.searchItems().subscribe(
-            items => {
-              this.items = items;
-            });
+      (() => {
+          // Get Items from server when a route change is detected
+          this.sub2 = this.itemsService.searchItems().subscribe();
         }
       )
     );
@@ -143,6 +139,10 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
     reader.onloadend = function (e) {
       self.fileImportService.fileImport(reader.result);
+    };
+
+    reader.onprogress = function (e) {
+      self.percentComplete = (e.loaded / e.total) * 100;
     };
 
     // Check if file is json

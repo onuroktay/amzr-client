@@ -5,7 +5,8 @@
 'use strict';
 
 export const onurTPIConstant = {
-  'URLWS': 'https://localhost:8080/'
+  // 'URLWS': 'https://localhost:8080/'
+  'URLWS': 'https://192.168.2.31:8080/'
 };
 
 export const UserType = {
